@@ -38,7 +38,19 @@ public:
 		return p;         // p указывает СЕЙЧАС - прыжок!
 	}
 
-	List* searchParent(T key) {}
+	List* searchParent(T key) {
+		List* p = this,
+			*parent = nullptr;
+		while ((p != nullptr) && (p->elem != key)) {
+			// В C++ реализованы "ленивые вычисления": если в первой скобке false,
+			// вторая НЕ ВЫЧИСЛЯЕТСЯ!
+			cout << (*p);
+			cout << "My elem is " << p->elem << ", key is " << key << "\n";
+			parent = p;
+			p = p->next;
+		}                 
+		return parent;
+	}
 
 	template <typename T>
 	friend ostream& operator<<(ostream& out, const List<T>& el) {
