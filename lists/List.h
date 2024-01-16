@@ -19,6 +19,26 @@ public:
 		el->next = h;
 		h = el;
 	}
+	/* СПИСОК МАТЕРНЫХ СЛОВ ПРОГРАММИРОВАНИЯ
+	goto
+	break
+	continue
+	*/
+
+
+	List* search(T key) {
+		List* p = this;
+		while ((p != nullptr) && (p->elem != key)) {
+			// В C++ реализованы "ленивые вычисления": если в первой скобке false,
+			// вторая НЕ ВЫЧИСЛЯЕТСЯ!
+			cout << (*p);
+			cout << "My elem is " << p->elem << ", key is " << key << "\n";
+			p = p->next;  // Присваиваем "бегунку" указатель на следующий элемент,
+		}                 // который хранится в поле next того объекта, на который
+		return p;         // p указывает СЕЙЧАС - прыжок!
+	}
+
+	List* searchParent(T key) {}
 
 	template <typename T>
 	friend ostream& operator<<(ostream& out, const List<T>& el) {

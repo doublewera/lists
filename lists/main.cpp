@@ -9,5 +9,9 @@ int main(int argc, char** argv) {
 		List<int>::prepend(head, new List<int>(i));
 	    cout << (*head);
 	}
+	List<int>* me = head->search(46);
+	cout << "Found! \n";
+	cout << (*me);
+	me = head->search(100);
 	return 0;
 }
