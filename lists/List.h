@@ -78,11 +78,15 @@ public:
 	}
 
 	~List() {  // пишем удаление ВСЕГО списка
-		cout << "DESCTRUCTOR!\n";
-		if (this->next != nullptr) {
-			delete this->next;
-			// Это не просто освобождение памяти! Это ДЕСТРУКТОР!
-		}
+		cout << "DESCTRUCTOR!\n";    // 81
+		List* p = this->next, *tmp;  // 82
+		while (p != nullptr) {       // 83
+			tmp = p->next;           // 84
+			p->next = nullptr;       // 85
+			delete p;                // 86
+			p = tmp;                 // 87
+		}                            // 88
+		this->next = nullptr;        // 89
 		// delete this;  не пишем!!!
 	}
 
