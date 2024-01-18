@@ -25,7 +25,6 @@ public:
 	continue
 	*/
 
-
 	List* search(T key) {
 		List* p = this;
 		while ((p != nullptr) && (p->elem != key)) {
@@ -62,6 +61,29 @@ public:
 			out << (*el.next);
 		}
 		return out;
+	}
+
+	void remove(List*& h, T key) {
+		List* parent = searchParent(key), * del;
+		if (parent == nullptr) {
+			del = h;
+			h = del->next;  // Переставляем голову на следующий элемент (второй, по сути)
+		}
+		else {
+			del = parent->next;
+			parent->next = del->next;
+		}
+		del->next = nullptr;  // защита от рекурсивного удаления в деструкторе
+		delete del;
+	}
+
+	~List() {  // пишем удаление ВСЕГО списка
+		cout << "DESCTRUCTOR!\n";
+		if (this->next != nullptr) {
+			delete this->next;
+			// Это не просто освобождение памяти! Это ДЕСТРУКТОР!
+		}
+		// delete this;  не пишем!!!
 	}
 
 /*   968 -> -23 -> 42 -> X
